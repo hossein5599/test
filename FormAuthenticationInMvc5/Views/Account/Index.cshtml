@@ -1,0 +1,65 @@
+﻿@using FormAuthenticationInMvc5.Models.ViewModels
+@{
+    ViewBag.Title = "Index";
+
+    var login = (LoginViewModel)ViewBag.login;
+    var register = (RegisterViewModel)ViewBag.register;
+}
+
+<h2>عضویت یا مدل</h2>
+
+<div class="container">
+    <div class="col-lg-6">
+        @using (Html.BeginForm("Login", "Account",FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>لاگین</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => login.UserMail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => login.UserMail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => login.UserMail, "", new { @class = "test-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => login.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => login.Password, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => login.Password, "", new { @class = "test-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => login.RememberMe, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => login.RememberMe, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => login.RememberMe, "", new { @class = "test-danger" })
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+              <input type="submit" value="ورود" name="submitValue" class="btn btn-default" />
+                    <input type="submit" name="submitValue" value="ثبت نام" class="btn btn-default" />
+
+                </div>
+            </div>
+
+        </div>
+        }
+
+
+    </div>
+
+
+
+</div>
